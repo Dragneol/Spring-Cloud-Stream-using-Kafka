@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        greetings-in:
+          destination: greetings
+          contentType: application/json
+          binder: kafka
+        greetings-out:
+          destination: greetings
+          contentType: application/json
+          binder: kafka
+      binders:
+        rabbitmq:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port:
+                - "5672:5672"
+                - "15672:15672"
+                username: guest
+                password: guest
+        kafka:
+          type: kafka
+          environment:
+            spring:
+              kafka:
+                host: localhost
+                port:
+                 - "9092:9092"
